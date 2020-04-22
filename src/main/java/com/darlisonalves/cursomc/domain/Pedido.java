@@ -29,6 +29,7 @@ public class  Pedido implements Serializable {
     @JoinColumn(name = "endereco_de_entrega_id")
     private Endereco enderecoDeEntrega;
 
+    @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedido> itemPedidos = new HashSet<ItemPedido>();
 
     public Pedido(){}
@@ -71,7 +72,6 @@ public class  Pedido implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
 
     public Endereco getEnderecoDeEntrega() {
         return enderecoDeEntrega;
