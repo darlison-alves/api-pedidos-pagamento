@@ -18,4 +18,9 @@ public class CategoriaService {
         Optional<Categoria> obj = ctaRepo.findById(id);
         return obj.orElseThrow( () -> new ObjectNotFountException("Objeto não encontrado! ID "+ id + " Tipo: " + Categoria.class.getName()));
     }
+
+    public Categoria create(Categoria categoria) {
+        categoria.setId(null);
+        return this.ctaRepo.save(categoria);
+    }
 }
