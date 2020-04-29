@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -20,7 +18,7 @@ public class CategoriaResource {
 
     @RequestMapping( value = "/{id}" ,method = RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id) {
-        Categoria obj = service.buscar(id);
+        Categoria obj = service.find(id);
         return ResponseEntity.ok(obj);
     }
 
@@ -29,5 +27,12 @@ public class CategoriaResource {
         Categoria categoria1 = this.service.create(categoria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria1.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Categoria> update( @PathVariable Integer id, @RequestBody Categoria categoria) {
+        categoria.setId(id);
+        this.service.update(categoria);
+        return ResponseEntity.ok().body(categoria);
     }
 }
