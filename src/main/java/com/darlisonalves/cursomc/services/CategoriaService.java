@@ -1,6 +1,7 @@
 package com.darlisonalves.cursomc.services;
 
 import com.darlisonalves.cursomc.domain.Categoria;
+import com.darlisonalves.cursomc.dto.CategoriaDTO;
 import com.darlisonalves.cursomc.repositories.CategoriaRepository;
 import com.darlisonalves.cursomc.services.exceptions.DataIntegrityException;
 import com.darlisonalves.cursomc.services.exceptions.ObjectNotFountException;
@@ -51,5 +52,10 @@ public class CategoriaService {
         PageRequest pageRequest = PageRequest.of( page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return this.ctaRepo.findAll(pageRequest);
     }
+
+    public Categoria fromDTO(CategoriaDTO categoriaDTO) {
+        return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
+    }
+
 
 }
