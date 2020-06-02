@@ -30,6 +30,7 @@ public class Estado implements Serializable {
     }
 
     public Integer getId() {
+        
         return id;
     }
 
